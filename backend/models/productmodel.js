@@ -16,16 +16,10 @@ const ProductSchema = mongose.Schema({
         type:String,
         required:[true,"is needed"]
     },
-    subcategory:{
-        type:String,   
-    },
-    tags:{
-        type:[String],
-        
-    },
+    
     pictures:{
         type:Array,
-        required:true
+        // required:true
     },
     ownerid:{
         type:mongose.Schema.Types.ObjectId,

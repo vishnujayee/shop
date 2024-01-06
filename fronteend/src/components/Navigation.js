@@ -5,22 +5,26 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { LinkContainer } from 'react-router-bootstrap'
+import { useSelector } from 'react-redux';
 function Navigation(props) {
-    const [user ,setuser] = useState({
-        Email:"hii@gmail.com",
-        isAdmin:false,
+    // const [user ,setuser] = useState({
+    //     Email:"hii@gmail.com",
+    //     isAdmin:false,
         
-    })
+    // })
+    const user = useSelector((state)=>state.user);
     return (
         <Navbar  >
             <Container >
-                <Navbar.Brand href="/">Ecom</Navbar.Brand>
+            <LinkContainer to={"/"}>
+                <Navbar.Brand>Ecom</Navbar.Brand>
+            </LinkContainer>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         {!user && <LinkContainer to={"/login"}><Nav.Link >Login</Nav.Link></LinkContainer>}
-                        {user  && <NavDropdown title={`${user.Email}`} id="basic-nav-dropdown">
-                            {user.isAdmin ? <><LinkContainer to={"/orders"}>
+                        {user  && <NavDropdown title={`${user.user.Email}`} id="basic-nav-dropdown">
+                            {!user.user.isAdmin ? <><LinkContainer to={"/orders"}>
                                 <NavDropdown.Item >Orders</NavDropdown.Item>
                             </LinkContainer>
                                 <LinkContainer to={"/cart"}>

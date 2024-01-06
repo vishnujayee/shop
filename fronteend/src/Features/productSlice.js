@@ -4,7 +4,18 @@ const initialstate = [];
 export const productSlice = createSlice({
     name:'Products',
     initialState:initialstate,
-    reducers:{}
-    
+    reducers:{},
+    extraReducers:(builder)=>{
+        builder.addMatcher(appApi.endpoints.addproduct.matchFulfilled,(state,{payload})=>{
+            return payload
+        })
+        builder.addMatcher(appApi.endpoints.getproduct.matchFulfilled,(state ,{payload})=>{
+            return payload
+        })
+        builder.addMatcher(appApi.endpoints.productdetail.matchFulfilled,(state ,{payload})=>{
+            return payload
+        })
+       
+    }
 });
 export default productSlice.reducer;

@@ -1,0 +1,59 @@
+.main{
+    display: flex;
+    flex-direction: row;
+    margin: 4px 8px ;
+    padding: 8px;
+}
+.optioncontent{
+    margin: 22px auto;
+    padding: 16px;
+    background-color: whitesmoke;
+    border-radius: 3px;
+    width: 100%;
+    box-shadow: 2px grey;
+}
+.setdiv{
+    display: flex;
+    flex-direction: row;
+}
+.profileoption{
+margin: 6px 8px;
+padding: 16px;
+border-radius: 3px;
+border: 2px grey;
+box-shadow: 1px white;
+}
+.user:hover{
+    box-shadow: 3px gray;
+}
+.more-setting{
+    margin: 3px 8px;
+    background-color: #fbfbfb;
+    border-radius: 3px;
+    border: 1px rgb(211, 211, 211);
+    padding: 16px;
+    width: 100%;
+}
+.setcon{
+    margin: 2px 8px;
+    padding: 3px;
+    width: 100%;
+
+
+}
+.setcon:hover{
+    background-color: lightblue;
+    border: 3px;
+    box-shadow: 2px black;
+    border-radius: 5px;
+}
+.head{
+    /* background-color: #dfdfdf; */
+    width: 100%;
+    border-bottom: 1px gainsboro;
+    border-bottom-style: solid;
+
+}
+.addaddress:hover{
+    cursor: pointer;
+}

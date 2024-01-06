@@ -31,6 +31,7 @@ const UserSchema =  moongose.Schema({
             default:{
                 total:0,
                 count:0,
+                products:{},
             }
         },
         notification:{

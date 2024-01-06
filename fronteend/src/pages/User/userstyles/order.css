@@ -1,0 +1,40 @@
+.ordermain{
+    display: flex;
+    flex-direction: row;
+    margin: 4px 6px;
+    padding: 16px;
+}
+.filterorder{
+    border-radius: 3px;
+    background-color: #FFF;
+    margin: 0 22px;
+    padding: 5px;
+    border-style: solid;
+    border-color: rgb(233, 231, 231);
+}
+.allorders{
+    padding: 4px;
+    width: 70%;
+}
+.prev-order{
+    display: flex;
+    flex-direction: row;
+    padding: 14px;
+    background-color: whitesmoke;
+    border-radius: 3px;
+    margin: 7px 3px;
+    justify-content: space-between;
+}
+.prev-order:hover{
+    box-shadow: 2px 2px rgb(229, 220, 220);
+    border: #FFF;
+}
+.serach-order:hover{
+    box-shadow: 1px 2px rgb(229, 220, 220);
+    border: #e1e1e1;
+
+}
+
+.reviewspan:hover{
+    cursor: pointer;
+}

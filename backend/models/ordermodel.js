@@ -6,7 +6,7 @@ const OrderSchema = mongoose.Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        // required: true
     },
     status: {
         type: String,

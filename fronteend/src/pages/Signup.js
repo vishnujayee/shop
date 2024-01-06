@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Container,Row,Col,Form,FormGroup ,Button} from 'react-bootstrap'
-import { Link, redirect } from 'react-router-dom'
+import { Skeleton } from '@mui/material'
+import { Link, useNavigate} from 'react-router-dom'
 import './Signup.css'
 import { Alert } from 'react-bootstrap'
 import {useSignupMutation } from '../services/appapi'
@@ -9,20 +10,34 @@ export default function Signup() {
   const [name,setname] = useState("");
   const [password,setpassword] = useState("");
   const [signup ,{error,isLoading , isError}] = useSignupMutation();
-  function handlesignup(e) {
+  const [dataok , setdataok] = useState(true);
+  const [load , setload] = useState(false);
+  const navigate = useNavigate();
+  async function  handlesignup(e) {
     e.preventDefault();
-    signup({name,email,password});
+    setload(true);
+    if(!name || name.split().length === 0 || !email || email.split().length === 0 || !email.includes("@") || !password || password.split().length === 0 || password.length<8) {
+      setdataok(false);
+      setload(false);
+      return;
+    }
+    await signup({name,email,password});
+    if(!isLoading) setload(false);
     setemail("");
     setname("");
     setpassword("");
-    redirect("/");
+    navigate("/login")
   }
   return (
-    <Container >
+    load ? <div><Skeleton />
+<Skeleton animation="wave" />
+<Skeleton animation={false} /></div>
+    :<Container >
     <Row className='box'>
     <Col md={6} className='signup_container'>
     <Form style={{width:"100%"}} onSubmit={handlesignup} >
     {isError && <Alert variant='danger'>{error.data}</Alert>}
+    {!dataok && <Alert variant='danger'>{"please check your credietial and password must be gretaer than 8 and all input field is required"}</Alert>}
     <p>Create your account </p>
     <FormGroup>
     <Form.Label>Name</Form.Label>
@@ -37,7 +52,7 @@ export default function Signup() {
     <Form.Control type ="password" placeholder = " Enter password" value = {password}  onChange={(e)=>{setpassword(e.target.value)}} required />
     </FormGroup>
     <FormGroup>
-        <Button type = "submit" disabled ={isLoading}>Signup</Button>
+        <Button type = "submit" disabled ={load}>Signup</Button>
     </FormGroup>
     <p>Account already Existed ? <Link to="/Login">Login to Your Account  </Link></p>
     </Form>
