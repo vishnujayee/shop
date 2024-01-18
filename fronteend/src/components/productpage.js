@@ -5,7 +5,7 @@ import './productpage.css'
 import { LinkContainer } from 'react-router-bootstrap';
  import { useGetproductMutation } from '../services/appapi';
 import { Skeleton } from '@mui/material';
-function Productpage() {
+function Productpage(props) {
     const [price,setprice] = useState(0);
     const handleinput = (e) =>{
         setprice(e.target.value)
@@ -20,16 +20,20 @@ function Productpage() {
     const [getproduct, {isLoading , isError , error}] = useGetproductMutation();
     const [load ,setload] = useState(true);
     const [dta , setp] = useState(null);
+    // const 
     useEffect(()=>{
+
         getproducts()
         async function getproducts(){
-            const dta = await getproduct().unwrap();
-            setp(dta);
-            if(isError || error) setload(false);
-            if(!isLoading) setload(false);
-        // const data = await fetch('https://fakestoreapi.com/products')
-        //         .then(res=>res.json());
-        //         console.log(data)
+            // const dta = await getproduct().unwrap();
+            // setp(dta);
+            // if(isError || error) setload(false);
+            // if(!isLoading) setload(false);
+            const data = await fetch('https://fakestoreapi.com/products')
+                .then(res=>res.json());
+                console.log(data)
+                setp(data);
+                setload(false);
             }
     },[])
     return (

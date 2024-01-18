@@ -18,8 +18,16 @@ export default function Product() {
     console.log(product);
   }
   const changephoto = (e) =>{
-    setphoto(prev => ([...prev , e.target.files[0]]))
-    console.log(photos);
+    console.log(e.target.files[0])
+    if(e.target.files[0]) {
+      setphoto((p)=>[...p,URL.createObjectURL(e.target.files[0])]);
+    }
+  }
+  const delimage = (e) =>{
+    const id = e.target.dataset.id;
+    setphoto((p)=>{
+      return p.filter((p)=>p !== id);
+    })
   }
   const handlesumbit = async(e) =>{
     e.preventDefault();
@@ -28,6 +36,7 @@ export default function Product() {
   }
   return (
     <div className='container'>
+    <div>div data on error sumbit</div>
       <CForm style={{ margin: '2px 5px' }} onSubmit={handlesumbit}>
         <CRow xs={{ gutter: 4 }}>
           <CCol md>
@@ -96,16 +105,16 @@ export default function Product() {
         </CRow>
         <Divider style={{ backgroundColor: 'gray', margin: '12px 0' }} />
         <CRow xs={{ gutter: 1 }}>
-          <CFormInput type="file" size="lg" id="formFileLg" label="ADD PRODUCT IMAGES" className='inpt'   onChange={changephoto}/>
-        </CRow>
+          <CFormInput type="file" size="lg" id="formFileLg" label="ADD PRODUCT IMAGES" className='input'   onChange={changephoto}/>
+        </CRow> 
         <Divider />
-        {/* {photos.length !==0 && photos.map((photo)=>{
-          return(
-            <CRow xs={{gutter:'10'}}>
-              <img alt={photo.name} src={require( photo.name)} style={{width:'20px' ,margin:'2px 2px', backgroundSize:"cover"}}/>
-            </CRow>
-          )
-        })} */}
+        <p>choose multiple images</p>
+      {photos.length >4 &&<p style={{color:'red', fontSize:'18px' ,fontWeight:'bold'}}>You can choose only 4 photos of your product</p>}
+      {photos.length>0  && <div style={{margin:'3px',borderBottom:'3px' , display:'flex'}}>
+        {photos.map((img)=>{
+          return (<div style={{border:'3px',borderRadius:'3px',borderColor:'grey'}}><img alt='new_product' src={img} className='inputimage' onClick={delimage} style={{backgroundSize:'cover'}} data-id={img}/></div>)
+        })}
+      </div>}
         <Divider/>
         <CButton style={{ margin: '4px 3px', padding: '5px' }} size='lg' type ="submit">Sumbit</CButton>
       </CForm>

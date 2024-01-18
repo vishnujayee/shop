@@ -12,3 +12,21 @@ margin: 5px 0;
     box-shadow: 1px 2px grey;
     border-color: aqua;
 }
+#removephoto:hover{
+    color: red;
+    rotate: 3deg;
+    opacity: 22;
+}
+.inputimage{
+    border-radius: 3px;
+    background-size: cover;
+    margin: 3px;
+}
+.inputimage:hover{
+    opacity: 0.5;
+    border-color: black;
+    border-width: 5px;
+    scale: 1.1;
+    
+
+}

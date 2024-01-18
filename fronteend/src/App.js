@@ -23,6 +23,7 @@ import Checkout from './pages/User/Checkout';
 import Notify from './pages/shop/Notify';
 import { useState } from 'react';
 import { useLogintokenMutation } from './services/appapi';
+import { useSelector } from 'react-redux';
 function App() {
   const navigate = useNavigate();
   const [logintoken,{isLoading, isError , error}] = useLogintokenMutation();
@@ -30,13 +31,13 @@ useState(()=>{
   if(localStorage.getItem("userauth")){ refrshtoken();}
   async function refrshtoken(){
     const token = localStorage.getItem("userauth");
-    if(!token || token == null || token === undefined) {
+    if(!token || token == null) {
       localStorage.removeItem("userauth");
       console.log("log out")
       navigate("/");
       return;
     }
-    const data =  await logintoken().unwrap().then((payload)=>{return payload})
+    const data =  await logintoken().unwrap();
       if(isError || error){
         localStorage.removeItem("userauth");
         console.log("need to login");
@@ -47,10 +48,8 @@ useState(()=>{
       if(!reftoken){
         localStorage.removeItem("userauth");
         navigate("/");
-        return;
       }else{
       localStorage.setItem("userauth",reftoken);}
-    ;
   }
 },[])
   return (
@@ -60,7 +59,7 @@ useState(()=>{
         <Route path='/' index element={<Home/>}/>
         <Route path='/signup' element ={<Signup/>}></Route>
         <Route path='/login' element ={<Login/>}></Route>
-        <Route path='/products/all_product' element ={<ALLproductPage/>}></Route>
+        <Route path='/products/all_product/' element ={<ALLproductPage/>}></Route>
         <Route path='/products/category/:category/all' element ={<CategoryWisePage/>}></Route>
         <Route path='/products/:category/:product_name/:product_id/product_detail' element ={<Productdetailpage/>}></Route>
         <Route path='/viewcart' element ={<Cart/>}></Route>

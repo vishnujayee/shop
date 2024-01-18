@@ -1,4 +1,5 @@
 const routes = require('express').Router();
+const { isObjectIdOrHexString } = require('mongoose');
 const Product = require('../models/productmodel');
 const User = require('../models/usermodel');
 const mongoose = require("mongoose")
@@ -86,18 +87,18 @@ routes.post('/add-to-cart', async (req, res) => {
         const { userid, productid, price } = req.body;
         const id = new ObjectId(userid);
         let users = await User.findById(id);
-        const usercart = users.cart;
-        if (usercart.products[productid]) {
-            usercart.products[productid] += 1;
+        if (users.cart.products[productid]) {
+            users.cart.products[productid] += 1;
         } else {
-            usercart.products[productid] = 1;
+            users.cart.products[productid] = 1;
         }
-        usercart.count += 1;
-        usercart.total = Number(usercart.total) + Number(price);
-        users.cart = usercart;
+        users.cart.count += 1;
+        users.cart.total = Number(users.cart.total) + Number(price);
         users.markModified('cart');
-        let user = await users.save();
-        user = user.toJson();
+        let user;
+        user = await users.save();
+        user = users.toJson();
+        // console.log(user);
         res.status(200).json({user});
     } catch (error) {
         res.status(400).send(error.message);
@@ -106,28 +107,33 @@ routes.post('/add-to-cart', async (req, res) => {
 //get cart
 routes.post("/getcart" , async(req,res)=>{
     const {id} = req.body;
-    const user = await User.findById(id);
+    console.log(id);
+    try{
+    const user = await User.findById(new ObjectId(id));
     if(!user) {
-        return res.json(201).json('');
+        return res.json(201).json("user not found");
     }
-    let usercart = user.toJson();
-    let cart = usercart.cart;
-    return res.status(200).json(cart);
+    let productsid = Object.keys(user.cart.products).map((id)=>new ObjectId(id));
+    let dta = await Product.find({'_id':{$in:productsid}});
+    console.log(dta);
+    res.status(200).json('');}catch (e){
+        res.status(201).jsoj({"error":e.message});
+    }
 
 })
 //increse cart qty
 routes.post('/increase-cart', async (req, res) => {
     const { userid, productid, price } = req.body;
     try {
-        const user = await User.findbyid(userid);
-        const usercart = user.cart;
-        user.cart[productid] += 1;
-        usercart.count += 1;
-        usercart.total += Number(price);
-        user.cart = usercart;
-        user.markModified('cart');
-        await user.save();
-        res.status(200).json(user);
+        let users = await User.findById(new ObjectId(userid));
+        users.cart.products[productid] += 1;
+        users.cart.count += 1;
+        users.cart.total += Number(price)
+        users.markModified('cart');
+        let user;
+        user = await users.save();
+        user = users.toJson();
+        res.status(200).json({user});
     } catch (e) {
         res.status(400).send(e.message);
     }
@@ -135,15 +141,15 @@ routes.post('/increase-cart', async (req, res) => {
 routes.post('/decrease-cart', async (req, res) => {
     const { userid, productid, price } = req.body;
     try {
-        const user = await User.findbyid(userid);
-        const usercart = user.cart;
-        user.cart[productid] -= 1;
-        usercart.count -= 1;
-        usercart.total -= Number(price);
-        user.cart = usercart;
-        user.markModified('cart');
-        await user.save();
-        res.status(200).json(user);
+        let userdta = await User.findById(new ObjectId(userid));
+        userdta.cart.products[productid] -= 1;
+        userdta.cart.count -= 1;
+        userdta.cart.total -= Number(price);
+        userdta.markModified('cart');
+        let user;
+        user = await userdta.save();
+        user = userdta.toJson();
+        res.status(200).json({user});
     } catch (e) {
         res.status(400).send(e.message);
     }
@@ -153,11 +159,9 @@ routes.post('/remove-from-cart', async (req, res) => {
     const { userid, productid, price } = req.body;
     try {
         const users = await User.findById(userid);
-        const userCart = users.cart;
-        userCart.products.total -= Number(userCart[productid]) * Number(price);
-        userCart.products.count -= userCart[productid];
-        delete userCart.products[productid];
-        users.cart = userCart;
+        users.cart.total -= Number(users.cart.products[productid]) * Number(price);
+        users.cart.count -= users.cart.products[productid];
+        delete users.cart.products[productid];
         users.markModified('cart');
         let user  = await users.save();
         user = user.toJson();

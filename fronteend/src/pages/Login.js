@@ -9,7 +9,6 @@ function Login() {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [login, { error, isLoading, isError }] = useLoginMutation();
-  const [loggedin, setlog] = useState(false);
   const [dataok, setdataok] = useState(true);
   const [load, setload] = useState(false);
   const navigate = useNavigate();
@@ -21,15 +20,19 @@ function Login() {
       setload(false);
       return;
     }
-    const data = await login({Email:email, password}).unwrap().then((payload)=>{return payload});
-    setlog(false);
-    setemail("");
-    setpassword("");
-    localStorage.setItem("userauth", data.token);
-    navigate("/");
+    const data = await login({Email:email, password}).unwrap()
+      // if(isError || error) {
+      //   setload(false);
+      //   return;
+      // }
+      setemail("");
+      setpassword("");
+      console.log(data);
+      localStorage.setItem("userauth", data.token);
+      setload(false);
+      navigate("/");
   }
   return (
-    isError?<div>error</div>:
     load ? <div style={{ margin: '18px 8px' }}><Skeleton style={{ margin: '5px 8px' }} />
       <Skeleton animation="wave" />
       <Skeleton animation={false} />

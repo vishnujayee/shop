@@ -3,7 +3,7 @@ const OrderSchema = mongoose.Schema({
     products: {
         type: Object
     },
-    owner: {
+    userid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         // required: true
@@ -25,12 +25,14 @@ const OrderSchema = mongoose.Schema({
         default: new Date().toISOString().split('T')[0]
     },
     address: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Address"
     },
-    country: {
-        type: String,
-    }
+    payment:{
+        type:String,
+        default:"Pending"
+    },
 }, { minimize: false });
 
-const Order = mongoose.model('Order', OrderSchema);
+const Order = mongoose.model('Orders', OrderSchema);
 module.exports = Order;

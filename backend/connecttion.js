@@ -2,8 +2,9 @@
     require('dotenv').config();
     // console.log(process.env)
         const moongose = require('mongoose');
-        const connection_str = "mongodb+srv://ecom:ecomproject@cluster0.xqjwtmc.mongodb.net/?retryWrites=true&w=majority";
-            moongose.connect(process.env.Mongo_local_host, {
+        const password = encodeURIComponent("ObaxP0Y97py2ehWv");
+        const connection_str = `mongodb+srv://jayeevishnu8:${password}@cluster0.cqfy4t5.mongodb.net/?retryWrites=true&w=majority`;
+            moongose.connect(connection_str, {
                 useNewUrlParser: true,
                 // useFindAndModify: false,
                 

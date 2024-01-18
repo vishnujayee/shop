@@ -7,11 +7,11 @@ import '../User/userstyles/order.css'
 import { useGetordersMutation } from '../../services/moreapi';
 import { useSelector } from 'react-redux';
 export default function Order() {
-    const user = useSelector((state)=>state.user.user);
+    const user = useSelector((state)=>state.user);
     const [getorders] = useGetordersMutation();
     useEffect(()=>{
         async function orders() {
-            await getorders({userid:user._id}).unwrap().then(()=>console.log("fetch orders"));
+            await getorders({userid:user.user._id});
         }
         orders();
     },[])

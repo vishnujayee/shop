@@ -6,5 +6,5 @@ const token = (id) =>{
 return jwt.sign({ied},process.env.TOKEN_SECRET,{expiresIn:"2d"})
 }
 module.exports = {
-    token
+    token:token
 }

@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 import moreapi from '../services/moreapi'
 const initialstate = [];
-const cartState = [];
+// const cartState = [];
 export const orderslicee = createSlice({
     name:'orders',
     initialState:initialstate,
@@ -10,12 +10,5 @@ export const orderslicee = createSlice({
         builder.addMatcher(moreapi.endpoints.getorders.matchFulfilled,(state,{payload})=>{
             return payload;
         });
-    }
-});
-export const cart =createSlice({
-    name:'cart',
-    initialState:initialstate,
-    reducers:{},
-    extraReducers:(builder)=>{
     }
 });

@@ -1,5 +1,6 @@
 const moongose  = require('mongoose');
 const bcrypt = require('bcrypt');
+const { default: mongoose } = require('mongoose');
 const UserSchema =  moongose.Schema({
     name : {
         type:String,
@@ -34,20 +35,16 @@ const UserSchema =  moongose.Schema({
                 products:{},
             }
         },
-        notification:{
-            type:Array,
-            default:[]
-        },
-        orders:[{
+        address:{
             type:moongose.Schema.Types.ObjectId,
-            ref:'Orders',
-        }],
+            ref:"Address"
+        }
 
 },{minimize:false})
 UserSchema.statics.findbycredentials =async function(email,password){
 const user = await User.findOne({Email:email});
 if(!user) throw new Error('Invalid crendiatal');
-const checkpassword = bcrypt.compare(password,user.password);
+const checkpassword = await bcrypt.compare(password,user.password);
 if(checkpassword) return user;
 throw new Error('Inavalid crendaital');
 }
@@ -55,6 +52,8 @@ UserSchema.methods.toJson = function(){
     const user = this;
     const userobj = user.toObject();
     delete userobj.password ;
+    delete userobj.notification ;
+    delete userobj.orders;
     return userobj;
 }
 // Pre middleware functions are executed one after another, when each middleware calls next

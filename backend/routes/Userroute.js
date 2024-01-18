@@ -28,11 +28,11 @@ routes.post('/login', async(req,res) =>{
         }
         console.log(Email, password)
         let user = await User.findbycredentials(Email,password);
-        user = user.toJson();
         console.log(user)
         let id = (user._id);
         const token = generatetoken.token(id);   
-        console.log(token);     
+        user = user.toJson();
+        console.log(user);
         res.json({
             "user": user,
             "token": token

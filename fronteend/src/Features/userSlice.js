@@ -13,19 +13,25 @@ export const userSlice = createSlice({
         builder.addMatcher(appApi.endpoints.signup.matchFulfilled,(state,{payload})=>{
         });
         builder.addMatcher(appApi.endpoints.login.matchFulfilled,(state,{payload})=>{
-            return {...payload};
+            return {...state,...payload};
         });
         builder.addMatcher(appApi.endpoints.logintoken.matchFulfilled,(state,{payload})=>{
-            return{...payload}
+            return{...state,...payload}
         })
         builder.addMatcher(appApi.endpoints.addcart.matchFulfilled,(state ,{payload})=>{
-            return { ...payload}
+            return { ...state,...payload}
         })
         // builder.addMatcher(appApi.endpoints.getcart.matchFulfilled,(state ,{payload})=>{
         //     return { ...payload}
         // })
         builder.addMatcher(appApi.endpoints.removecart.matchFulfilled,(state ,{payload})=>{
-            return { ...payload}
+            return { ...state, ...payload}
+        })
+         builder.addMatcher(appApi.endpoints.inccartitem.matchFulfilled,(state ,{payload})=>{
+            return {...state, ...payload}
+        })
+         builder.addMatcher(appApi.endpoints.deccartitem.matchFulfilled,(state ,{payload})=>{
+            return { ...state,...payload}
         })
         
     }

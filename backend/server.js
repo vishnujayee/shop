@@ -29,6 +29,8 @@ app.post('/create-payment', async (req, res) => {
             payment_method_types: ['card'],
         })
         res.status(200).json(payment);
+        //order status process -> pending
+        //order payment status ->done
     }
     catch (e) {
         res.status(400).send(e.message);
