@@ -1,10 +1,10 @@
 const routes = require('express').Router();
-const { isObjectIdOrHexString } = require('mongoose');
 const Product = require('../models/productmodel');
 const User = require('../models/usermodel');
 const mongoose = require("mongoose")
 const types = mongoose.Types;
 const ObjectId = types.ObjectId
+let fs = require("node:fs");
 //get all product
 routes.get('/', async function (req, res) {
     try {
@@ -18,11 +18,10 @@ routes.get('/', async function (req, res) {
 //create product
 routes.post('/new', async(req, res) => {
     try {
-        const { name, description, price, category } = req.body;
-        const p = await Product.create({ name, description, price, category });
-        console.log(p);
-        const products = await Product.find();
-        res.status(201).json(products);
+        const { name, description, price, category  , brandname , images} = req.body;
+        // const p = await Product.create({ name, description, brandname, price, category });
+        console.log(images)
+        res.status(201).json("");
     } catch (e) {
         res.status(400).send(e.message);
     }

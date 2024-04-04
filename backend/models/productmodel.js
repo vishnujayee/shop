@@ -19,6 +19,7 @@ const ProductSchema = mongose.Schema({
     
     pictures:{
         type:Array,
+        default:[],
         // required:true
     },
     ownerid:{

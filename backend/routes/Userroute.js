@@ -20,6 +20,7 @@ routes.post('/signup' ,async(req,res,next)=>{
 })
 //login
 routes.post('/login', async(req,res) =>{
+    console.log("function call");
     try {
         const {Email,password}  = req.body;
         if( !Email || Email.split().length == 0 || !Email.indexOf("@") || !password || password.split().length == 0 || password.length<8){
@@ -28,7 +29,7 @@ routes.post('/login', async(req,res) =>{
         }
         console.log(Email, password)
         let user = await User.findbycredentials(Email,password);
-        console.log(user)
+        console.log(user);
         let id = (user._id);
         const token = generatetoken.token(id);   
         user = user.toJson();
