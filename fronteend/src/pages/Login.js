@@ -18,19 +18,37 @@ function Login() {
     if (!email || email.length === 0 || !email.includes("@") || !password || password.split().length === 0 || password.length < 8) {
       setdataok(false);
       setload(false);
+      console.log("data-wrong");
       return;
     }
-    const data = await login({Email:email, password}).unwrap()
-      // if(isError || error) {
-      //   setload(false);
-      //   return;
-      // }
+    try {
+      const data =  await login({Email:email, password}).unwrap();
+    isRequestOk();
+    function isRequestOk() {
+      if(isError || error) {
+        setload(false);
+        navigate("/");
+        console.log("errot so redirecting");
+        alert("error");
+        return;
+      }
+      if(data.error) {
+        setdataok(false);
+        setload(false);
+        return;
+      }
       setemail("");
       setpassword("");
       console.log(data);
       localStorage.setItem("userauth", data.token);
       setload(false);
       navigate("/");
+    }
+    } catch (error) {
+      setload(false);
+      console.log(error);
+    }
+    
   }
   return (
     load ? <div style={{ margin: '18px 8px' }}><Skeleton style={{ margin: '5px 8px' }} />

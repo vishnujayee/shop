@@ -1,37 +1,42 @@
-import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
-import { Row ,Col } from 'react-bootstrap'
-import { LinkContainer } from "react-router-bootstrap";
-import categories from '../categories'
+import React, { Fragment } from 'react' 
 import './Home.css'
+import { grey } from '@mui/material/colors'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import Product_Carsoul_List from '../components/shop/product_carsoul_list'
+//trending product
+//searchrd product 
+// sale product banner
+//add baneer
+//noting content then recently added products
 function Home() {
+    const user = useSelector((state)=>state.user);
     return (
         <Fragment>
+        <span>message- to get message</span>
+        {user && user.isAdmin && <div>DashBoard</div>}
             <div className='div-home'>
             <img src={require('../devmateral/ecomimage/andy-hermawan-uFdCDgnoNVI-unsplash.jpg')} alt='home_banner'   className="home-banner"/>
+            <Link to={"/products/all_product"}><div style={{backgroundColor:grey}}>Shop Now</div></Link>
+            </div>
+            <div className='Add_banner_with_page'>
+                <img src={require('../devmateral/ecomimage/andy-hermawan-uFdCDgnoNVI-unsplash.jpg')} alt='add_content'/>
             </div>
             <div className='feature_content' style={{display:'block'}}>
-                <h2>Last product</h2>
-                <div>
-                    <Link to='/category/all' style={{ textAlign: "right", display: "block", textDecoration: "none" }}>see more</Link>
-                </div>
-                
+                <h3>Trending product</h3>
+                <Product_Carsoul_List/>
+            </div>
+            <div className='feature_content' style={{display:'block'}}>
+                <h3>Most Searched Products</h3>
+            </div>
+            <div className='Add_banner_to_product'>
+                <img src={require('../devmateral/ecomimage/andy-hermawan-uFdCDgnoNVI-unsplash.jpg')} alt='add_content'/>
+            </div>
+            <div className='feature_content' style={{display:'block'}}>
+                <h3>Recently Added</h3>
             </div>
             <div className="recent-products-container container mt-4" style={{display:'block',}}>
-            <h2>categories</h2>
-                <Row>
-                    {categories.map((category)=>(
-                        <LinkContainer to={`/category/${category.name.toLocaleLowerCase()}`} className=''>
-                            <Col md={4}>
-                                <div style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${category.img})`, gap: "10px" }} className="category-tile">
-                                    {category.name}
-                                </div>
-                            </Col>
-                        </LinkContainer>
-                    ))}
-                </Row>
-                
-                <div>helo</div>
+            <div>see more</div>
             </div>
                 
         </Fragment>
@@ -39,5 +44,3 @@ function Home() {
 }
 
 export default Home
-// style={{display:'block',width:'100%', height:'400px',}}
-// style={{backgroundSize:'cover',width:'100%', height:'60vh',}}

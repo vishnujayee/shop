@@ -14,8 +14,8 @@ fullAdress:{
 },
 userid:{
     type:moongose.Schema.Types.ObjectId,
-    ref:"User",
-}
+},
+usertype:{type:String},
 })
 const Address = moongose.model("Address" , addressSchema);
 module.exports = Address;

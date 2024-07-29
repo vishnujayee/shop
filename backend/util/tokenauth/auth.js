@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../../models/usermodel');
+const User = require('../../models/user/usermodel');
 const generatetoken = require("../tokenauth/generatetoken");
 // var mongoose = require('mongoose');
 require('dotenv').config();
@@ -17,13 +17,14 @@ const checkAuth = async (req, res, next ) => {
         }
         checkuser = checkuser.toJson();
         console.log(checkuser);
-        const token  = generatetoken.token(userid);
+        // let decoded = jwt.decode(token);
+        // let expiresAt = decoded.exp;
+        // if(expiresAt < new Date())
+        let token  = generatetoken.token(userid);
         res.json({
             "user":checkuser,
-            "token":token
-        })
+        });
         
-
     })
 }
 module.exports = {
