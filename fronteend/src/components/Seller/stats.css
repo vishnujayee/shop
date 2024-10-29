@@ -1,0 +1,16 @@
+.div_button {
+    margin:1rem;
+    background-color:#CBC3E3;
+    border:2px purple solid;
+    border-radius:4px;
+    padding:3px;
+}
+.div_button:hover {
+    box-shadow: 4px rgb(250, 179, 250);
+    cursor: pointer;
+    background-color:  rgb(184, 83, 157);
+} 
+.table:hover {
+    background-color: rgb(214, 208, 208);
+    cursor: pointer;
+}

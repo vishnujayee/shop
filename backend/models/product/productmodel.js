@@ -1,5 +1,5 @@
 const mongose = require('mongoose');
-const ProductSchema = new mongose.Schema({
+const ProductSchema =  new mongose.Schema({
     name:{
         type:String,
         required:[true,"is neccesary"]
@@ -47,5 +47,5 @@ ProductSchema.methods.makeObject = function() {
     p = p.toObject();
     return p;
 }
-const Product =  mongose.model('Product',ProductSchema);
+const Product =   mongose.model('Product',ProductSchema);
 module.exports  = Product;

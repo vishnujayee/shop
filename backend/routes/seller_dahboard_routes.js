@@ -8,9 +8,11 @@ const product_todat_stats = require("../models/product/productstatsmodel").produ
 const product_suscribe = require("../models/product/productstatsmodel").productsuscribe;
 const product_tot_stats = require("../models/product/productstatsmodel").productstats;
 let getmonth_from_month_number = require("../util/get_time_info");
+const Product = require("../models/product/productmodel");
 const Order = require("../models/user/ordermodel");
 const seller = require("../models/seller/sellermodel");
 const { productnotify } = require("../models/shop/notificationmodel");
+const sellerrating = require("../models/seller/sellerrating");
 let routes = express.Router(); 
 
 routes.get("/:sellerid/dashboard_stats", async (req, res) => {
@@ -85,6 +87,7 @@ routes.get("/:sellerid/dashboard_stats", async (req, res) => {
                     {$limit:3},
             ]);
         let monthname = getmonth_from_month_number.getmonth_from_month_number(month + 1);
+        let rating = await sellerrating.findOne({_id:sellerid});
         // -----------------------------------------------------------------------------------------------
         // -------------------------------------------------------------------------
         // -------------------------------------------------------------------DashBoard_Data_list
@@ -103,6 +106,8 @@ routes.get("/:sellerid/dashboard_stats", async (req, res) => {
         let highest_selling_product_this_year = yearsellagg;
         let highest_selling_product_this_week = weeklysellagg;
         let highest_selling_product_today = todaysellagg;
+        let shoprating = rating.stars/rating.total_no_of_reviews;
+        let rewies = rating.total_no_of_reviews;
         console.log(thisyearsales,todayinfo,pending_orders,returnorders,yearsellagg,todaysellagg,weeklysellagg,pendingorders);
         return res.status(200).json({
             iserror: false,
@@ -124,7 +129,8 @@ routes.get("/:sellerid/all-stats" ,async(req,res)=>{
         let shop_stats = await shop_total_stats.findOne({
             sellerid:sellerid ,
         });
-        let totalviews = shop_stats.total_product_view;
+        let totsales = shop_stats.total_life_time_net_sales;
+        let totalproductviews = shop_stats.total_product_view;
         let toaladdtocart = shop_stats.total_product_add_to_cart;
         let totorders = shop_stats.total_life_time_orders;
         let fulfill_order = shop_stats.total_life_time_fulfilled_orders;
@@ -250,6 +256,7 @@ async function getproducts() {
     {
         $unwind:"$productdetail"
     },
+    ,
     {
         $project:{
             total_qty_sell_by_seller:1,
@@ -263,12 +270,23 @@ async function getproducts() {
     ,{
         $limit:pagesize,
     }
-    ])
+    ]);
+    
     return res.staus.json({
         iserror:false,
         products:productyearqtyandprice,
+        // totalproducts:totproduct,
+    })
+};
+async function getProductNumber(req,res) {
+    let sellerid = new mongoose.Types.ObjectId(req.params.sellerid);
+    let totproduct = await Product.find({sellerid:sellerid ,product_exist:true}).count();
+    return res.status(200).json({
+        iserror:'false',
+    totalproducts:totproduct,
     })
 }
+routes.get("/:sellerid/product-count",getProductNumber);
 routes.get("/:product/stats", async(req,res)=>{
     try {
         let productid = new mongoose.Types.ObjectId(req.params.product);

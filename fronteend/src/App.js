@@ -1,6 +1,8 @@
 import './App.css';
 import Home from './pages/Home';
-import Navigation from './components/Navigation';
+import Wrapper from './components/common/Wrapper';
+import NotFound from './pages/shop/NotFound';
+import Sellerwrapper from './components/Seller/seller-dashboard-components/Seller_Wrapper';
 import {
   Route,
   Routes,
@@ -22,6 +24,15 @@ import Checkout from './pages/User/Checkout';
 import Notify from './pages/shop/Notify';
 import { useEffect, useState } from 'react';
 import { useLogintokenMutation } from './services/appapi';
+import Dashboard  from './components/Seller/dashboard';
+import All_Stats from './components/Seller/All_Stats';
+import Product_stats from './components/Seller/Product_stats';
+import Nav_Wrapper from './components/common/Nav_Wrapper';
+import OrderSeller from './pages/seller/OrderSeller';
+import Pendingorders from './components/Seller/Pendingorders';
+import AllOrders from './components/Seller/AllOrders';
+import NewOrders from './components/Seller/NewOrders';
+import ReturnOrders from './components/Seller/ReturnOrders';
 function App() {
   const navigate = useNavigate();
   const [logintoken,{isLoading, isError , error}] = useLogintokenMutation();
@@ -59,8 +70,8 @@ useEffect(()=>{
   }
 },[])
   return (
-    <div className="App">
-    <Navigation />
+    <div className="App" style={{width:'100%', height:'100%'}}>
+    <Nav_Wrapper/>
       <Routes>
         <Route path='/' index element={<Home/>}/>
         <Route path='/signup' element ={<Signup/>}></Route>
@@ -79,11 +90,18 @@ useEffect(()=>{
         <Route path='/notification' element ={<Notify/>}></Route>
         {/* <Route path='/register_seller/signup' element ={<Addproduct/>}></Route> */}
         {/* <Route path='/login_seller/login' element ={<Addproduct/>}></Route> */}
-        {/* <Route path='/seller/dashboard' element ={<Addproduct/>}></Route>
+        <Route path='/seller/dashboard' element={<Wrapper urlto = "/seller/dashboard/home"/>}></Route> 
+        <Route path='/seller/dashboard/home' element={<Sellerwrapper page = {<Dashboard/>}/>}> </Route> 
+          <Route path='/seller/dashboard/all-stats' element={<Sellerwrapper page = {<All_Stats/>}/>}></Route>
+          <Route path='/seller/dashboard/product-stats' element={<Sellerwrapper page = {<Product_stats/>}/>}></Route>
+          <Route path='/seller/dashboard/allorders' element={<Sellerwrapper page = {<OrderSeller page={<AllOrders/>}/>}/>}></Route>
+          <Route path='/seller/dashboard/pendingorders' element={<Sellerwrapper page = {<OrderSeller page={<Pendingorders/>}/>}/>}></Route>
+          <Route path='/seller/dashboard/neworders' element={<Sellerwrapper page = {<OrderSeller page={<NewOrders/>}/>}/>}></Route>
+          <Route path='/seller/dashboard/returns' element={<Sellerwrapper page = {<OrderSeller page={<ReturnOrders/>}/>}/>}></Route>
         {/* <Route path='/seller/sellerprofile' element ={<Addproduct/>}></Route> */}
         {/* <Route path='/seller/seller_shop/' element ={<Addproduct/>}></Route>
         <Route path='/admin/admin_panel/' element ={<Addproduct/>}></Route> */} 
-        <Route path='*' element={<Home/>} />
+        <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>
   );

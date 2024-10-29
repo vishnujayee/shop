@@ -159,7 +159,7 @@ async function gettopproducts() {
 
 routes.post("/create-category",async(req,res)=>{
     try {
-        let adminid = new moongose.Types.ObjectId(req.body.user);
+        let adminid = new mongoose.Types.ObjectId(req.body.user);
         let categoryname = req.body.category;
         let iscategory = await category.findOne({category_name:categoryname});
         let subcatgeorynames = req.body.subcategory;
