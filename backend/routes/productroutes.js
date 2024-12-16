@@ -31,12 +31,14 @@ class Productdetail {
 };
 
 //get all product by seller 
-routes.get('/all/:sellerid/', async function (req, res) {
+routes.get('/all/:sellerid', async function (req, res) {
     try {
         let sellerid = req.params.sellerid;
-        let pageno = parseInt(req.query.page);
+        let pageno;
+        if(!req.query.page) pageno = 0;
+        pageno = parseInt(req.query.page);
         console.log(pageno);
-        if(!pageno || !sellerid) {
+        if(!sellerid) {
             return res.status(400).json({
                 iserror:true,
                 error:"Invalid request input",
