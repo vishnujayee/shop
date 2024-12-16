@@ -19,6 +19,6 @@ app.use('/products', productroute);
 app.use('/orders',orderroute);
 app.use('/seller',sellerroute);
 
-app.listen(8080, () => {
+app.listen(3000, () => {
     console.log("bacakend server started");
 });
