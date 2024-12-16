@@ -1,6 +1,6 @@
 import React, {useState } from 'react'
 import  {Button} from 'react-bootstrap'
-import Cartutem from '../../components/cart/Cartutem'
+// import Cartutem from '../../components/cart/Cartutem'
 import '../User/userstyles/cart.css'
 import SaveLater from '../../components/cart/SaveLater'
 export default function Cart() {
@@ -21,7 +21,7 @@ export default function Cart() {
                         <div>Deliver TO :<span> name, Pincode</span> <div>ADDRESS</div></div>
                         <div><Button style={{backgroundColor:color === 1 ? opt1 : opt2, color:'blue' , padding:'4px',borderRadius:'2px' ,margin:'3px 0'}} onMouseMove={changecolor} onMouseLeave={originalcolor}>Change</Button></div>
                     </div>
-                    <Cartutem  isorder={true}/>
+                    {/* <Cartutem  isorder={true}/> */}
                 </div>
                 <div className='Save_later'>
                     <div>Save For Later (Total items)</div>
