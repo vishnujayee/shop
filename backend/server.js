@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // app.use(checkAuth);
 app.get('/',(req,res)=>{
-    return res.send(<h1>helo</h1>);
+    return res.json("helo");
 });
 app.use('/users', userroute);
 app.use('/products', productroute);
