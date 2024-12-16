@@ -1,6 +1,6 @@
 import React, {useState } from 'react'
 import  {Button} from 'react-bootstrap'
-import Cartutem from '../../../src/components/cart/Cartutem'
+import Cartutem from '../../components/cart/Cartutem'
 import '../User/userstyles/cart.css'
 import SaveLater from '../../components/cart/SaveLater'
 export default function Cart() {
