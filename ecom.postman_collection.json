@@ -1,0 +1,740 @@
+{
+	"info": {
+		"_postman_id": "c5beafe7-e470-40fd-964c-4dc02be4de9b",
+		"name": "ecom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35032233"
+	},
+	"item": [
+		{
+			"name": "user_apis",
+			"item": [
+				{
+					"name": "localhost:8080/users/ubdate-profile/user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userid",
+									"value": "664dda50fdc2c5f4e3499942",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "vvvgg",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "bhfbebehefbffh@ghgh",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "hhfhhhhhhhhh",
+									"type": "text"
+								},
+								{
+									"key": "phonenumber",
+									"value": "1234567899",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/users/ubdate-profile/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"ubdate-profile",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/signup/user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"fjjfjf\",\r\n    \"email\":\"fjfjfjfjfjfjfjf@mmmm\",\r\n    \"password\":\"jjhhhhhhhhhhhhhh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/659c18651988a566e3831281/add-to-favourite",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productid",
+									"value": "659adec8303b6ad201f0cf44",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/users/659c18651988a566e3831281/add-to-favourite",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"659c18651988a566e3831281",
+								"add-to-favourite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/delete-history/659c18651988a566e3831281/659adec8303b6ad201f0cf44",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/delete-history/659c18651988a566e3831281/659adec8303b6ad201f0cf44",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"delete-history",
+								"659c18651988a566e3831281",
+								"659adec8303b6ad201f0cf44"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/659c18651988a566e3831281/remove-favourite",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productid",
+									"value": "659adec8303b6ad201f0cf44",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/users/659c18651988a566e3831281/remove-favourite",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"659c18651988a566e3831281",
+								"remove-favourite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/create-playlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "playlistname",
+									"value": "books",
+									"type": "text"
+								},
+								{
+									"key": "userid",
+									"value": "664dda50fdc2c5f4e3499942",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/users/create-playlist",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"create-playlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/add-history/659c18651988a566e3831281/659adec8303b6ad201f0cf44",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/add-history/659c18651988a566e3831281/659adec8303b6ad201f0cf44",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"add-history",
+								"659c18651988a566e3831281",
+								"659adec8303b6ad201f0cf44"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/delete-list/:listid/:userid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/delete-list/:listid/:userid",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"delete-list",
+								":listid",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "listid",
+									"value": "664f4305be98fdbd60d789f6"
+								},
+								{
+									"key": "userid",
+									"value": "664dda50fdc2c5f4e3499942"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/:listid/addproduct/:productid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userid",
+									"value": "664dda50fdc2c5f4e3499942",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/users/:listid/addproduct/:productid",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								":listid",
+								"addproduct",
+								":productid"
+							],
+							"query": [
+								{
+									"key": "productid",
+									"value": "659adec8303b6ad201f0cf44",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "listid",
+									"value": "664f495c4a35f1a78b837d36"
+								},
+								{
+									"key": "productid",
+									"value": "659adec8303b6ad201f0cf44"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/:listid/delete-product/:productid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userid",
+									"value": "664dda50fdc2c5f4e3499942",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/users/:listid/delete-product/:productid",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								":listid",
+								"delete-product",
+								":productid"
+							],
+							"variable": [
+								{
+									"key": "listid",
+									"value": "664f495c4a35f1a78b837d36"
+								},
+								{
+									"key": "productid",
+									"value": "659adec8303b6ad201f0cf44"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products_apis",
+			"item": [
+				{
+					"name": "seller_products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/all/:sellerid/?page=200",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"all",
+								":sellerid",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "200"
+								}
+							],
+							"variable": [
+								{
+									"key": "sellerid",
+									"value": "6670fd5a6647540df3a9366b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add_product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "files",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "sdddd",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "sddddd",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "23333",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "fff",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/C:/Users/jayee/OneDrive/Pictures/Screenshots/Screenshot 2024-04-30 094350.png"
+								},
+								{
+									"key": "brandname",
+									"value": "fffffffff",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/products/new",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_detail_product_page",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:8080/products/667818fd85d26bc47538e290",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"667818fd85d26bc47538e290"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_product_but-not_img",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"fhhfhfh\",\r\n    \"description\":\"fjjfjfjfjfjfj\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/update/6678177ad97c436881cddb6d",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"update",
+								"6678177ad97c436881cddb6d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\":\"659c18651988a566e3831281\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/delete/667818fd85d26bc47538e290",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"delete",
+								"667818fd85d26bc47538e290"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "stock_change_status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sellerid\":\"659c18651988a566e3831281\",\r\n    \"productid\":\"667818fd85d26bc47538e290\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/stock_change_status",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"stock_change_status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "catgeory_pagination_page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/category/all/?page= 1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"category",
+								"all",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": " 1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-coupoun",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"coupoun\":\"thankyou\",\r\n    \"productid\":\"667818fd85d26bc47538e290\",\r\n    \"sellerid\":\"659c18651988a566e3831281\",\r\n    \"isLimited_qty\":true,\r\n    \"percent\":\"100\",\r\n    \"cp_qty\":\"111\"\r\n    // \"islimited_time\":true,\r\n    // \"cp_time\":\"Mon Jun 24 2024\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/add-coupoun",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"add-coupoun"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove-coupoun",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/remove-coupoun/:cpid",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"remove-coupoun",
+								":cpid"
+							],
+							"variable": [
+								{
+									"key": "cpid",
+									"value": "66783f108f90a793cc8ef9ed"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order_apis",
+			"item": [
+				{
+					"name": "create-order-single",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productid\":\"66782b16d4a94f83c62b87cc\", \r\n     \"userid\":\"659c18651988a566e3831281\",\r\n      \"qty\" :\"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/orders/create-order",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"create-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-order-by-cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\":\"659c18651988a566e3831281\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/orders/create-order-by-cart",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"create-order-by-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_allOrder_with_pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/orders/659c18651988a566e3831281",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"659c18651988a566e3831281"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_seller_pending_orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/orders/pending-order/6670fd5a6647540df3a9366b",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"pending-order",
+								"6670fd5a6647540df3a9366b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
