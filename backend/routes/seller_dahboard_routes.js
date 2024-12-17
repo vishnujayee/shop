@@ -91,7 +91,7 @@ routes.get("/:sellerid/dashboard_stats", async (req, res) => {
         // -----------------------------------------------------------------------------------------------
         // -------------------------------------------------------------------------
         // -------------------------------------------------------------------DashBoard_Data_list
-        let yearnetsales = thisyearsales.net_sales;
+        let yearnetsales = thisyearsales.net_sales ? thisyearsales.net_sales : 0;
         let monthsales = thisyearsales.month_wise_stats_sales[monthname];
         let monthnetsales = thisyearsales.month_wise_net_sales[monthname];
         let todaysales = todayinfo.sales;
