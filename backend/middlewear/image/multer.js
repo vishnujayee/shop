@@ -5,8 +5,7 @@ const multerupload =  multer({
     limits :{
         files:5,
     },
-})
-
+});
 module.exports = {
     multerupload ,
 }
