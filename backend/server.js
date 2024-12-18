@@ -7,7 +7,11 @@ const sellerroute = require("../backend/routes/seller_dahboard_routes");
 require('./connecttion');
 const cors = require('cors');
 const app = express();
-app.use(cors({origin: /\.vercel\.com$/}));
+app.use(cors(
+    {
+        origin:["https://shop-puce-seven.vercel.app/" , "https://shop-vishnujayees-projects.vercel.app/" , "https://shop-git-master-vishnujayees-projects.vercel.app/"]
+    }
+));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // app.use(checkAuth);
