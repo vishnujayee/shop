@@ -7,9 +7,7 @@ const sellerroute = require("../backend/routes/seller_dahboard_routes");
 require('./connecttion');
 const cors = require('cors');
 const app = express();
-app.use(cors({
-    origin:'*',
-}));
+app.use(cors({origin: /\.vercel\.com$/}));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // app.use(checkAuth);
