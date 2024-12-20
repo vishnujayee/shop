@@ -7,12 +7,12 @@ const sellerroute = require("../backend/routes/seller_dahboard_routes");
 require('./connecttion');
 const cors = require('cors');
 const app = express();
-app.options('*', cors());
 app.use(cors({
-   origin: '*', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization' ,'SellerAuth' , 'authorization']
+    origin: '*', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization' ,'SellerAuth' , 'authorization']
 }));
+app.options('*', cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // app.use(checkAuth);
