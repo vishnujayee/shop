@@ -10,12 +10,12 @@
     "routes": [
     {
       "src": "/(.*)",
-      "dest": "server",
+      "dest": "/server",
       "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization SellerAuth"
+        "Access-Control-Allow-Headers": "Content-Type, Authorization ,SellerAuth , authorization"
       }
     }
   ]

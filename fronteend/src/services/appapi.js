@@ -9,10 +9,6 @@ export const appApi = createApi({
             query: (user) => ({
                 url: "/users/signup",
                 method: "POST",
-                body: user,
-                headers:{
-                     "mode":"no-cors",
-                }
             })
         }),
         login: builder.mutation({
