@@ -8,8 +8,11 @@ require('./connecttion');
 const cors = require('cors');
 const app = express();
 app.use(cors({
-    origin:'*'
+   origin: '*', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+app.options('*', cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // app.use(checkAuth);
