@@ -1,29 +1,34 @@
 const express = require('express');
-const userroute = require('./routes/Userroute')
+const userroute = require('./routes/Userroute');
 const productroute = require('../backend/routes/productroutes');
 const orderroute = require('./routes/orderroute');
 const sellerroute = require("../backend/routes/seller_dahboard_routes");
-// const stripe = require('stripe')('sk_test_51NvKPMSF19TMEUG52SRj4ed6mjPK2xGjD4spFLO7W8QTIs2pDVmtAh0HIvzpH4CTlc4ajDy3tJo24UUg1B3xneZB00VUzCD7Re');
 require('./connecttion');
 const cors = require('cors');
 const app = express();
+
+// Apply CORS middleware globally
 app.use(cors({
-    origin: '*', 
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization' ]
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
-app.options('*', cors());
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-// app.use(checkAuth);
-app.get('/',(req,res)=>{
+
+app.get('/', (req, res) => {
     return res.json("helo");
 });
+
 app.use('/users', userroute);
 app.use('/products', productroute);
-app.use('/orders',orderroute);
-app.use('/seller',sellerroute);
+app.use('/orders', orderroute);
+app.use('/seller', sellerroute);
+
+// Optional: Explicitly handle OPTIONS for all routes (not strictly necessary with cors middleware)
+app.options('*', cors());
 
 app.listen(3000, () => {
-    console.log("bacakend server started");
+    console.log("backend server started");
 });
