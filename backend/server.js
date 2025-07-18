@@ -26,8 +26,14 @@ app.use('/products', productroute);
 app.use('/orders', orderroute);
 app.use('/seller', sellerroute);
 
-// Optional: Explicitly handle OPTIONS for all routes (not strictly necessary with cors middleware)
-app.options('*', cors());
+// Allow all OPTIONS requests before any authentication
+app.use((req, res, next) => {
+    if (req.method === 'OPTIONS') {
+        res.sendStatus(200);
+    } else {
+        next();
+    }
+});
 
 app.listen(3000, () => {
     console.log("backend server started");
