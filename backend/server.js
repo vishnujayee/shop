@@ -7,7 +7,7 @@ require('./connecttion');
 const cors = require('cors');
 const app = express();
 
-// Apply CORS middleware globally
+// Apply CORS middleware globally (this must be first!)
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
@@ -26,14 +26,8 @@ app.use('/products', productroute);
 app.use('/orders', orderroute);
 app.use('/seller', sellerroute);
 
-// Allow all OPTIONS requests before any authentication
-app.use((req, res, next) => {
-    if (req.method === 'OPTIONS') {
-        res.sendStatus(200);
-    } else {
-        next();
-    }
-});
+// Optional: Explicitly handle OPTIONS for all routes
+app.options('*', cors());
 
 app.listen(3000, () => {
     console.log("backend server started");
